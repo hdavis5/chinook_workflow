@@ -2,11 +2,11 @@
 
 #Bash script to filter input bcf file and output both a vcf and the plink format (BED/BIM/FAM) files
 
-INPUT_BCF="/home/hdavis/catherine_creek/bcf_files/combined2024-08-19.bcf"
+INPUT_VCF="/home/hdavis/catherine_creek/bcf_files/combined2024-08-19.bcf"
 OUTPUT_PREFIX="CC_filtered"
 
 #Convert BCF to both VCF and PLINK format
-plink --bcf $INPUT_BCF --make-bed --recode vcf --out ${OUTPUT_PREFIX}_step1
+plink --bcf $INPUT_VCF --make-bed --recode vcf --out ${OUTPUT_PREFIX}_step1
 
 #Filter variants with >5% missingness
 plink --bfile ${OUTPUT_PREFIX}_step1 --geno 0.05 --make-bed --recode vcf --out ${OUTPUT_PREFIX}_step2
