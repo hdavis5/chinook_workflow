@@ -2,7 +2,7 @@
 
 #Bash script to filter input bcf file and output both a vcf and the plink format (BED/BIM/FAM) files
 
-INPUT_BCF="input.bcf"
+INPUT_BCF="/home/hdavis/catherine_creek/bcf_files/combined2024-08-19.bcf"
 OUTPUT_PREFIX="CC_filtered"
 
 #Convert BCF to both VCF and PLINK format
@@ -22,4 +22,4 @@ plink --bfile ${OUTPUT_PREFIX}_step4 --indep-pairwise 100 10 0.2 --out ${OUTPUT_
 plink --bfile ${OUTPUT_PREFIX}_step4 --extract ${OUTPUT_PREFIX}_step5.prune.in --make-bed --recode vcf --out ${OUTPUT_PREFIX}_step6
 
 #Remove Hardy-Weinberg equilibrium outliers
-plink --bfile ${OUTPUT_PREFIX}_step6 --hwe 1e-6 --make-bed --recode vcf --out ${OUTPUT_PREFIX}_final
+plink --bfile ${OUTPUT_PREFIX}_step6 --hwe 1e-6 --make-bed --recode vcf --threads 10 --out ${OUTPUT_PREFIX}_final

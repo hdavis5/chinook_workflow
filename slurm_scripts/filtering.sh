@@ -1,25 +1,18 @@
 #!/bin/bash
 
-#Bash script to filter input bcf file and output both a vcf and the plink format (BED/BIM/FAM) files
+#SBATCH --job-name=vcf_filter
 
-INPUT_BCF="input.bcf"
-OUTPUT_PREFIX="CC_filtered"
+#SBATCH --mail-user=hayden.davis@noaa.gov
+# See manual for other options for --mail-type
+#SBATCH --mail-type=ALL
+#SBATCH -c 10
+#SBATCH --mem=16G
+#SBATCH --time=48:00:00
+#SBATCH --output=/home/hdavis/catherine_creek/bcf_files/out/indexed_bcf.out
+#SBATCH --error=/home/hdavis/catherine_creek/bcf_files/out/indexed_bcf.err
 
-#Convert BCF to both VCF and PLINK format
-plink --bcf $INPUT_BCF --make-bed --recode vcf --out ${OUTPUT_PREFIX}_step1
+# Commands to run
+# Setup
+module load bio/plink/1.90b6.23
 
-#Filter variants with >5% missingness
-plink --bfile ${OUTPUT_PREFIX}_step1 --geno 0.05 --make-bed --recode vcf --out ${OUTPUT_PREFIX}_step2
-
-#Filter individuals with >10% missingness
-plink --bfile ${OUTPUT_PREFIX}_step2 --mind 0.1 --make-bed --recode vcf --out ${OUTPUT_PREFIX}_step3
-
-#Filter MAF < 5%
-plink --bfile ${OUTPUT_PREFIX}_step3 --maf 0.05 --make-bed --recode vcf --out ${OUTPUT_PREFIX}_step4
-
-#LD pruning
-plink --bfile ${OUTPUT_PREFIX}_step4 --indep-pairwise 100 10 0.2 --out ${OUTPUT_PREFIX}_step5
-plink --bfile ${OUTPUT_PREFIX}_step4 --extract ${OUTPUT_PREFIX}_step5.prune.in --make-bed --recode vcf --out ${OUTPUT_PREFIX}_step6
-
-#Remove Hardy-Weinberg equilibrium outliers
-plink --bfile ${OUTPUT_PREFIX}_step6 --hwe 1e-6 --make-bed --recode vcf --out ${OUTPUT_PREFIX}_final
+bash /home/hdavis/catherine_creek/chinook_workflow/scripts/filtering.sh
