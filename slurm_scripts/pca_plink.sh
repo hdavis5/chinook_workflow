@@ -17,4 +17,4 @@ BFILE="/home/hdavis/catherine_creek/bcf_files/filtered_vcf/CC_filtered_final"
 OUTFILE="/home/hdavis/catherine_creek/chinook_workflow/data/pca_results"
 
 # Step 1: Run PLINK PCA
-plink --bfile $BFILE --pca --out $OUTFILE
+plink --bfile $BFILE --pca --allow-extra-chr --double-id --out $OUTFILE
