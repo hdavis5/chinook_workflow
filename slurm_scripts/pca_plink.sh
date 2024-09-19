@@ -6,8 +6,8 @@
 #SBATCH -c 10
 #SBATCH --mem=8G
 #SBATCH --time=2:00:00
-#SBATCH --output=/path/to/output/pca_analysis.out
-#SBATCH --error=/path/to/output/pca_analysis.err
+#SBATCH --output=/home/hdavis/catherine_creek/chinook_workflow/data/pca_analysis.out
+#SBATCH --error=/home/hdavis/catherine_creek/chinook_workflow/data/pca_analysis.err
 
 # Load modules for PLINK and Python
 module load bio/plink/1.90b6.23
