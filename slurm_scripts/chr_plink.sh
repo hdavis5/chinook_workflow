@@ -18,8 +18,12 @@ OUTFILE="/home/hdavis/catherine_creek/chinook_workflow/data/"
 OUTPUT_PREFIX="CC_chr_filtered"
 CHR_MAP="/home/hdavis/catherine_creek/chinook_workflow/data/chr_map.txt"
 
-# Step 1: Update chromosome names in PLINK format
-plink --bfile $BFILE --make-bed --allow-extra-chr --double-id --chr-set 34 --update-chr $CHR_MAP --out ${OUTPUT_PREFIX}
+plink --bfile $BFILE --make-bed --allow-extra-chr --double-id --chr-set  \
+      --update-chr $CHR_MAP --set-missing-var-ids @:# \
+      --out ${OUTPUT_PREFIX}
 
 # Step 2: Convert the updated PLINK dataset back to VCF format
-plink --bfile ${OUTPUT_PREFIX} --recode vcf --allow-extra-chr --double-id --chr-set 34 --out ${OUTPUT_PREFIX}
+plink --bfile ${OUTPUT_PREFIX} --recode vcf --allow-extra-chr --double-id --chr-set  --out $OUTFILE
+
+# Step 3: Perform any further analysis, such as PCA, using the updated dataset
+plink --bfile ${OUTPUT_PREFIX} --pca --allow-extra-chr --double-id --chr-set  --threads 10 --out $OUTFILE
