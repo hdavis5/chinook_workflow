@@ -17,8 +17,8 @@ ADMIX_FILE="/home/hdavis/catherine_creek/chinook_workflow/data/admixture/CC_filt
 OUTFILE="/home/hdavis/catherine_creek/chinook_workflow/data/admixture/out"
 
 # Run ADMIXTURE process single time
-for k in {1...4}; do
-        admixture ADMIX_FILE --seed=$RANDOM --cv -C 0.0000001 $k >results$k.txt
+for k in {1..4}; do
+        admixture $ADMIX_FILE --seed=$RANDOM --cv -C 0.0000001 $k >$OUTFILE/results$k.txt
         done
 
 # Run ADMIXTURE process 10 times 
