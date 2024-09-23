@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=plink_pca_analysis
+#SBATCH --job-name=admixture
 #SBATCH --mail-user=hayden.davis@noaa.gov
 #SBATCH --mail-type=ALL
 #SBATCH -c 10
@@ -17,7 +17,9 @@ ADMIX_FILE="/home/hdavis/catherine_creek/chinook_workflow/data/admixture/CC_filt
 OUTFILE="/home/hdavis/catherine_creek/chinook_workflow/data/admixture/out"
 
 # Run ADMIXTURE process single time
-admixture ADMIX_FILE --seed=$RANDOM --cv -C 0.0000001 $k >$OUTFILE/results$k.txt
+for k in {1...4}; do
+        admixture ADMIX_FILE --seed=$RANDOM --cv -C 0.0000001 $k >results$k.txt
+        done
 
 # Run ADMIXTURE process 10 times 
 #for i in {1...10}; do
