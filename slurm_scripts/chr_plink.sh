@@ -27,4 +27,4 @@ OUTPUT_PREFIX="CC_chr_filtered"
 CHR_MAP="/home/hdavis/catherine_creek/chinook_workflow/data/chr_map.txt"
 
 # Step 1: Run PLINK PCA
-plink --bfile $BFILE --hwe 1e-6 --make-bed --recode vcf --allow-extra-chr --double-id --chr-set 34 --threads 10 --out $OUTFILE --update-chr $CHR_MAP/$OUTPUT_PREFIX
+plink --bfile $BFILE --make-bed --recode vcf --allow-extra-chr --double-id --chr-set 34 --threads 10 --out $OUTFILE --update-chr $CHR_MAP/$OUTPUT_PREFIX
