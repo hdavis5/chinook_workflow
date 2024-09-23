@@ -15,9 +15,6 @@
 # Setup
 module load bio/bcftools/1.11
 
-REF=/home/hdavis/catherine_creek/bcf_files
+REF=/home/hdavis/catherine_creek/bcf_files/combined2024-08-19.bcf
 
-for bcf_file in ${REF}/*.bcf
-do 
-	bcftools index $bcf_file
-done
+bcftools index --threads 10 -c $REF 
