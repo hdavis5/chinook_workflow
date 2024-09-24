@@ -19,7 +19,7 @@ OUTPUT_PREFIX="CC_chr_filtered"
 CHR_MAP="/home/hdavis/catherine_creek/chinook_workflow/data/chr_map.txt"
 
 plink --bfile $BFILE --make-bed --allow-extra-chr --double-id --chr-set 34 \
-      --update-chr $CHR_MAP --set-missing-var-ids @:#:\$r:\$a \
+      --update-chr $CHR_MAP --set-missing-var-ids @:#:$1:$2 \
       --out ${OUTPUT_PREFIX}
 
 # Step 2: Convert the updated PLINK dataset back to VCF format
