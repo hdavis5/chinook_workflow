@@ -3,13 +3,14 @@
 #Bash script to filter input bcf file and output both a vcf and the plink format (BED/BIM/FAM) files
 
 INPUT_VCF="/home/hdavis/catherine_creek/bcf_files/combined2024-08-19.bcf"
-OUTPUT_PREFIX="/home/hdavis/catherine_creek/bcf_files/CC_filtered"
+OUTPUT_PREFIX="/home/hdavis/catherine_creek/bcf_files/CC"
 CHR_MAP="/home/hdavis/catherine_creek/chinook_workflow/data/chr_map.txt"
 
 #Convert BCF to both VCF and PLINK format
-plink --vcf $INPUT_VCF --make-bed --recode vcf --allow-extra-chr --double-id --chr-set 34 --threads 10 --out ${OUTPUT_PREFIX}_step1
+plink --vcf $INPUT_VCF --recode vcf --allow-extra-chr --double-id --threads 10 --out ${OUTPUT_PREFIX}
+#plink --vcf $INPUT_VCF --make-bed --recode vcf --allow-extra-chr --double-id --chr-set 34 --threads 10 --out ${OUTPUT_PREFIX}_step1
 
-plink --bfile ${OUTPUT_PREFIX}_step1 --allow-extra-chr --make-bed --double-id --chr-set 34 --threads 10 --update-chr $CHR_MAP --out ${OUTPUT_PREFIX}_chr
+#plink --bfile ${OUTPUT_PREFIX}_step1 --allow-extra-chr --make-bed --double-id --chr-set 34 --threads 10 --update-chr $CHR_MAP --out ${OUTPUT_PREFIX}_chr
 
 ##Filter variants with >5% missingness
 #plink --bfile ${OUTPUT_PREFIX}_step1 --geno 0.05 --allow-extra-chr --make-bed --recode vcf --double-id --chr-set 34 --threads 10 --out ${OUTPUT_PREFIX}_step2
