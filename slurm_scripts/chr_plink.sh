@@ -21,6 +21,10 @@ CHR_MAP="/home/hdavis/catherine_creek/chinook_workflow/data/chr_map.txt"
 
 plink --bfile $BFILE --allow-extra-chr --chr-set 34 --list-duplicate-vars suppress-first --make-bed --out ${OUTPUT_PREFIX}_dedup
 
+plink --bfile ${OUTPUT_PREFIX}_dedup --make-bed --allow-extra-chr --double-id --chr-set 34 \
+      --update-chr $CHR_MAP --set-missing-var-ids @:#:$1:$2 \
+      --out ${OUTPUT_PREFIX}_updated
+
 # Step 2: Update chromosome names in the deduplicated dataset
 plink --bfile ${OUTPUT_PREFIX}_dedup --make-bed --allow-extra-chr --double-id --chr-set 34 \
       --update-chr $CHR_MAP --out ${OUTPUT_PREFIX}_updated
