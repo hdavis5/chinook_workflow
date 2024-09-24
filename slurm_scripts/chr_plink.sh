@@ -19,7 +19,7 @@ OUTPUT_PREFIX="CC_chr_filtered"
 CHR_MAP="/home/hdavis/catherine_creek/chinook_workflow/data/chr_map.txt"
 
 
-plink --bfile $BFILE --allow-extra-chr --chr-set 34 --rm-dup force-first --make-bed --out ${OUTPUT_PREFIX}_dedup
+plink --bfile $BFILE --allow-extra-chr --chr-set 34 --list-duplicate-vars suppress-first --make-bed --out ${OUTPUT_PREFIX}_dedup
 
 # Step 2: Update chromosome names in the deduplicated dataset
 plink --bfile ${OUTPUT_PREFIX}_dedup --make-bed --allow-extra-chr --double-id --chr-set 34 \
