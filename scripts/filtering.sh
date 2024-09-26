@@ -18,8 +18,8 @@ plink --bfile ${OUTPUT_PREFIX}_step1 --mind 0.1 --allow-extra-chr --make-bed --d
 plink --bfile ${OUTPUT_PREFIX}_step2 --maf 0.05 --allow-extra-chr --make-bed --double-id --threads 10 --out ${OUTPUT_PREFIX}_step3
 
 #LD pruning
-plink --bfile ${OUTPUT_PREFIX}_step3 --indep-pairwise 100 10 0.2 --allow-extra-chr --make-bed --double-id --threads 10 --out ${OUTPUT_PREFIX}_step4
-plink --bfile ${OUTPUT_PREFIX}_step3 --extract ${OUTPUT_PREFIX}_step4.prune.in --allow-extra-chr --threads 10 --out ${OUTPUT_PREFIX}_step5
+plink --bfile ${OUTPUT_PREFIX}_step3 --indep-pairwise 100 10 0.2 --allow-extra-chr --double-id --threads 10 --out ${OUTPUT_PREFIX}_step4
+plink --bfile ${OUTPUT_PREFIX}_step3 --extract ${OUTPUT_PREFIX}_step4.prune.in --allow-extra-chr --make-bed --threads 10 --out ${OUTPUT_PREFIX}_step5
 
 #Remove Hardy-Weinberg equilibrium outliers
 plink --bfile ${OUTPUT_PREFIX}_step5 --hwe 1e-6 --make-bed --recode vcf --allow-extra-chr --double-id --threads 10 --out ${OUTPUT_PREFIX}_filtered
