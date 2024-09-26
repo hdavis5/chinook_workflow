@@ -18,17 +18,18 @@ module load bio/bcftools/1.11
 
 # change reference, samples, and SAMPLES output directories as needed
 BCF=/home/hdavis/catherine_creek/bcf_files/filtered_vcf/CC_filtered_final.vcf
-GZ=/home/hdavis/catherine_creek/bcf_files/CC_filtered_final.vcf.gz
+VCF=/home/hdavis/catherine_creek/bcf_files/filtered_vcf/CC_filtered_final.vcf
 OUT=/home/hdavis/catherine_creek/bcf_files/cc_renamed.vcf
 CHR_MAP=/home/hdavis/catherine_creek/bcf_files/filtered_vcf/chr_map.txt
 
-bcftools view -Oz -o $GZ $BCF
+bcftools view -O v -o $VCF $BCF
 
-bcftools index -t $GZ
-
-# Commands
-#update chromosome names
-bcftools annotate --rename-chrs $CHR_MAP -o $OUT -O v $GZ
-
-# Remove contigs that are not associated with chromosomes
-bcftools view -r ^NW_ $OUT -o cc_filtered.vcf -O v
+#bcftools index -t $GZ
+#
+## Commands
+##update chromosome names
+#bcftools annotate --rename-chrs $CHR_MAP -o $OUT -O v $GZ
+#
+## Remove contigs that are not associated with chromosomes
+#bcftools view -r ^NW_ $OUT -o cc_filtered.vcf -O v
+#
