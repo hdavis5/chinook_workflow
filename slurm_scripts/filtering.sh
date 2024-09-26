@@ -14,5 +14,6 @@
 # Commands to run
 # Setup
 module load bio/plink/1.90b6.23
+module load bio/bcftools/1.11
 
 bash /home/hdavis/catherine_creek/chinook_workflow/scripts/filtering.sh

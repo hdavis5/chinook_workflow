@@ -22,4 +22,6 @@ plink --vcf ${OUTPUT_PREFIX}_temp_step3 --extract ${OUTPUT_PREFIX}_temp_step4.pr
 #Remove Hardy-Weinberg equilibrium outliers
 plink --vcf ${OUTPUT_PREFIX}_temp_step5 --hwe 1e-6 --make-bed --recode vcf --allow-extra-chr --double-id --threads 10 --out ${OUTPUT_PREFIX}_filtered
 
+bcftools annotate --rename-chrs $CHR_MAP -o ${OUTPUT_PREFIX}_filterRename -O v ${OUTPUT_PREFIX}_filtered
+
 rm ${OUTPUT_PREFIX}_temp*
