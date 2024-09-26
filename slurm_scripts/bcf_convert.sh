@@ -22,7 +22,7 @@ GZ=/home/hdavis/catherine_creek/bcf_files/CC_filtered_final.vcf.gz
 OUT=/home/hdavis/catherine_creek/bcf_files/cc_renamed.vcf
 CHR_MAP=/home/hdavis/catherine_creek/bcf_files/filtered_vcf/chr_map.txt
 
-bgzip -c $BCF > $GZ
+bcftools view -Oz -o $GZ $BCF
 
 bcftools index -t $GZ
 
