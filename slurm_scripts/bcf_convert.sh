@@ -24,12 +24,12 @@ GZ=/home/hdavis/catherine_creek/bcf_files/filtered_vcf/cc_chrOnly.vcfgz
 CHR_MAP=/home/hdavis/catherine_creek/bcf_files/filtered_vcf/chr_map.txt
 
 bcftools view -O z -o $VCF $BCF
-
 bcftools index -t $VCF
 
 # Commands
 #update chromosome names
 bcftools annotate --rename-chrs $CHR_MAP -o $OUT -O z $VCF
+bcftools index -t $OUT
 
 # Remove contigs that are not associated with chromosomes
 bcftools view -r ^NW_ $OUT -o $GZ -O z
