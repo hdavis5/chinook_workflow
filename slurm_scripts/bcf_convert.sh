@@ -18,11 +18,11 @@ module load bio/bcftools/1.11
 
 # change reference, samples, and SAMPLES output directories as needed
 BCF=/home/hdavis/catherine_creek/bcf_files/filtered_vcf/CC_filtered_final.vcf
-VCF=/home/hdavis/catherine_creek/bcf_files/filtered_vcf/CC_formatted.vcf
+VCF=/home/hdavis/catherine_creek/bcf_files/filtered_vcf/CC_formatted.vcf.gz
 OUT=/home/hdavis/catherine_creek/bcf_files/CC_renamed.vcf
 CHR_MAP=/home/hdavis/catherine_creek/bcf_files/filtered_vcf/chr_map.txt
 
-bcftools view -O v -o $VCF $BCF
+bcftools view -O z -o $VCF $BCF
 
 bcftools index -t $VCF
 
