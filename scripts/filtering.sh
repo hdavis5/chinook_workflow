@@ -4,6 +4,7 @@
 
 INPUT_VCF="/home/hdavis/catherine_creek/bcf_files/combined2024-08-19.bcf"
 OUTPUT_PREFIX="CC_filtered"
+CHR_MAP="/home/hdavis/catherine_creek/chinook_workflow/data/chr_map.txt"
 
 #Convert BCF to both VCF and PLINK format
 #plink --vcf $INPUT_VCF --make-bed --recode vcf --allow-extra-chr --double-id --threads 10 --out ${OUTPUT_PREFIX}_step1
